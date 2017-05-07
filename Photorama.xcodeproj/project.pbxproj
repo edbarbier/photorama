@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		FC14EA2F1EBFC22400E592A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC14EA2E1EBFC22400E592A4 /* AppDelegate.swift */; };
-		FC14EA311EBFC22400E592A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC14EA301EBFC22400E592A4 /* ViewController.swift */; };
 		FC14EA341EBFC22400E592A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC14EA321EBFC22400E592A4 /* Main.storyboard */; };
 		FC14EA361EBFC22400E592A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC14EA351EBFC22400E592A4 /* Assets.xcassets */; };
 		FC14EA391EBFC22400E592A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC14EA371EBFC22400E592A4 /* LaunchScreen.storyboard */; };
 		FC14EA441EBFC22400E592A4 /* PhotoramaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC14EA431EBFC22400E592A4 /* PhotoramaTests.swift */; };
 		FC14EA4F1EBFC22400E592A4 /* PhotoramaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC14EA4E1EBFC22400E592A4 /* PhotoramaUITests.swift */; };
+		FC14EA601EBFC47900E592A4 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC14EA5F1EBFC47900E592A4 /* PhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,6 @@
 /* Begin PBXFileReference section */
 		FC14EA2B1EBFC22400E592A4 /* Photorama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photorama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC14EA2E1EBFC22400E592A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FC14EA301EBFC22400E592A4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FC14EA331EBFC22400E592A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FC14EA351EBFC22400E592A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC14EA381EBFC22400E592A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		FC14EA4A1EBFC22400E592A4 /* PhotoramaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoramaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC14EA4E1EBFC22400E592A4 /* PhotoramaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoramaUITests.swift; sourceTree = "<group>"; };
 		FC14EA501EBFC22400E592A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC14EA5F1EBFC47900E592A4 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +97,10 @@
 		FC14EA2D1EBFC22400E592A4 /* Photorama */ = {
 			isa = PBXGroup;
 			children = (
+				FC14EA5E1EBFC46800E592A4 /* Model */,
+				FC14EA5D1EBFC46300E592A4 /* View */,
+				FC14EA5C1EBFC45B00E592A4 /* Controller */,
 				FC14EA2E1EBFC22400E592A4 /* AppDelegate.swift */,
-				FC14EA301EBFC22400E592A4 /* ViewController.swift */,
 				FC14EA321EBFC22400E592A4 /* Main.storyboard */,
 				FC14EA351EBFC22400E592A4 /* Assets.xcassets */,
 				FC14EA371EBFC22400E592A4 /* LaunchScreen.storyboard */,
@@ -123,6 +125,28 @@
 				FC14EA501EBFC22400E592A4 /* Info.plist */,
 			);
 			path = PhotoramaUITests;
+			sourceTree = "<group>";
+		};
+		FC14EA5C1EBFC45B00E592A4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FC14EA5F1EBFC47900E592A4 /* PhotoViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		FC14EA5D1EBFC46300E592A4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		FC14EA5E1EBFC46800E592A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,8 +286,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC14EA311EBFC22400E592A4 /* ViewController.swift in Sources */,
 				FC14EA2F1EBFC22400E592A4 /* AppDelegate.swift in Sources */,
+				FC14EA601EBFC47900E592A4 /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

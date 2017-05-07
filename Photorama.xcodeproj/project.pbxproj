@@ -14,6 +14,7 @@
 		FC14EA441EBFC22400E592A4 /* PhotoramaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC14EA431EBFC22400E592A4 /* PhotoramaTests.swift */; };
 		FC14EA4F1EBFC22400E592A4 /* PhotoramaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC14EA4E1EBFC22400E592A4 /* PhotoramaUITests.swift */; };
 		FC14EA601EBFC47900E592A4 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC14EA5F1EBFC47900E592A4 /* PhotoViewController.swift */; };
+		FC14EA621EBFC64600E592A4 /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC14EA611EBFC64600E592A4 /* FlickrAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		FC14EA4E1EBFC22400E592A4 /* PhotoramaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoramaUITests.swift; sourceTree = "<group>"; };
 		FC14EA501EBFC22400E592A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC14EA5F1EBFC47900E592A4 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		FC14EA611EBFC64600E592A4 /* FlickrAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 		FC14EA5E1EBFC46800E592A4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FC14EA611EBFC64600E592A4 /* FlickrAPI.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC14EA621EBFC64600E592A4 /* FlickrAPI.swift in Sources */,
 				FC14EA2F1EBFC22400E592A4 /* AppDelegate.swift in Sources */,
 				FC14EA601EBFC47900E592A4 /* PhotoViewController.swift in Sources */,
 			);

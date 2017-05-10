@@ -1,55 +1,61 @@
 //
-//  PhotoViewController.swift
-//  Photorama
-//
-//  Created by Edouard Barbier on 07/05/17.
-//  Copyright © 2017 Edouard Barbier. All rights reserved.
+//  Copyright © 2015 Big Nerd Ranch
 //
 
 import UIKit
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: UIViewController, UICollectionViewDelegate {
     
-    //MARK: - @IBOUTLETS
-    
-    @IBOutlet var imageView: UIImageView!
-    
-    //MARK: - VARIABLES
+    @IBOutlet var collectionView: UICollectionView!
     
     var store: PhotoStore!
-    
-    //MARK: - VIEW LIFE CYCLE
+    let photoDataSource = PhotoDataSource()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         
-        store.fetchInterestingPhotos { (photoResult) -> Void in
+        collectionView.dataSource = photoDataSource
+        collectionView.delegate = self
+        
+        store.fetchInterestingPhotos {
+            (photosResult) -> Void in
             
-            switch photoResult {
+            switch photosResult {
             case let .success(photos):
-                print("Successfully found \(photos.count) photos")
-                
-                if let firstPhoto = photos.first {
-                    
-                    self.updateImageView(for: firstPhoto)
-                }
-                
+                print("Successfully found \(photos.count) photos.")
+                self.photoDataSource.photos = photos
             case let .failure(error):
-                print("Error fetching interesting photos: \(error)")
+                print("Error fetching recent photos: \(error)")
+                self.photoDataSource.photos.removeAll()
             }
+            self.collectionView.reloadSections(IndexSet(integer: 0))
         }
     }
     
-    func updateImageView(for photo: Photo) {
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
         
-        store.fetchImage(for: photo) { (imageResult) -> Void in
+        let photo = photoDataSource.photos[indexPath.row]
+        
+        // Download the image data, which could take some time
+        store.fetchImage(for: photo, completion: { (result) -> Void in
             
-            switch imageResult {
-                
-            case let .success(image):
-                self.imageView.image = image
-            case let .failure(error):
-                print("Error downloading image : \(error)")
+            // The index path for the photo might have changed between the
+            // time the request started and finished, so find the most
+            // interesting index path
+            
+            guard let photoIndex = self.photoDataSource.photos.index(of: photo),
+                case let .success(image) = result else {
+                    return
             }
-        }
+            let photoIndexPath = IndexPath(item: photoIndex, section: 0)
+            
+            // When the request finishes, only update the cell if it's still visible
+            if let cell = self.collectionView.cellForItem(at: photoIndexPath)
+                as? PhotoCollectionViewCell {
+                cell.update(with: image)
+            }
+        })
     }
 }

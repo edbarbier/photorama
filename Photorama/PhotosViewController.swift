@@ -4,7 +4,7 @@
 
 import UIKit
 
-class PhotosViewController: UIViewController, UICollectionViewDelegate {
+class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var collectionView: UICollectionView!
     
@@ -30,6 +30,17 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
             }
             self.collectionView.reloadSections(IndexSet(integer: 0))
         }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+        
+        flowLayout.invalidateLayout()
+
     }
     
     //MARK: - COLLECTION VIEW DELEGATE
@@ -59,6 +70,10 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
                 cell.update(with: image)
             }
         })
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width / 4 - 10 , height: view.frame.width / 4 - 10)
     }
     
     //MARK: - NAVIGATION 

@@ -32,6 +32,8 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
         }
     }
     
+    //MARK: - COLLECTION VIEW DELEGATE
+    
     func collectionView(_ collectionView: UICollectionView,
                         willDisplay cell: UICollectionViewCell,
                         forItemAt indexPath: IndexPath) {
@@ -57,5 +59,27 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
                 cell.update(with: image)
             }
         })
+    }
+    
+    //MARK: - NAVIGATION 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        switch segue.identifier {
+            
+            case "showPhoto"?:
+                if let selectedInfoPath = collectionView.indexPathsForSelectedItems?.first {
+                    
+                    let photo = photoDataSource.photos[selectedInfoPath.row]
+                    let destinationVC = segue.destination as! PhotoInfoViewController
+                    destinationVC.photo = photo
+                    destinationVC.store = store
+            
+            }
+        
+        default:
+            preconditionFailure("Unexpected segue identifier")
+        }
+        
     }
 }

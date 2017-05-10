@@ -17,18 +17,12 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
         collectionView.dataSource = photoDataSource
         collectionView.delegate = self
         
+        updateDataSource()
+        
         store.fetchInterestingPhotos {
             (photosResult) -> Void in
             
-            switch photosResult {
-            case let .success(photos):
-                print("Successfully found \(photos.count) photos.")
-                self.photoDataSource.photos = photos
-            case let .failure(error):
-                print("Error fetching recent photos: \(error)")
-                self.photoDataSource.photos.removeAll()
-            }
-            self.collectionView.reloadSections(IndexSet(integer: 0))
+            self.updateDataSource()
         }
     }
     
@@ -72,6 +66,22 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
         })
     }
     
+    private func updateDataSource() {
+        
+        store.fetchAllPhotos { (photosResult) in
+            
+            switch photosResult {
+            case let .success(photos):
+                self.photoDataSource.photos = photos
+            case .failure:
+                self.photoDataSource.photos.removeAll()
+                self.collectionView.reloadSections(IndexSet(integer: 0))
+            }
+        
+            self.collectionView.reloadSections(IndexSet(integer: 0))
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width / 4 - 10 , height: view.frame.width / 4 - 10)
     }
@@ -83,7 +93,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
         switch segue.identifier {
             
             case "showPhoto"?:
-                if let selectedInfoPath = collectionView.indexPathsForSelectedItems?.first {
+                if let selectedInfoPath = self.collectionView.indexPathsForSelectedItems?.first {
                     
                     let photo = photoDataSource.photos[selectedInfoPath.row]
                     let destinationVC = segue.destination as! PhotoInfoViewController

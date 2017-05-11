@@ -26,6 +26,9 @@ class TagsDataSource: NSObject, UITableViewDataSource {
         
         let tag = tags[indexPath.row]
         let name = tag.value(forKey: "name") as! String
+        
+        cell.accessibilityHint = "Double-tap to toggle selected"
+        
         cell.textLabel?.text = name
         
         return cell

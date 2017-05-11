@@ -10,8 +10,15 @@ import UIKit
 
 class PhotoCollectionViewCell: UICollectionViewCell {
     
+    //MARK: - @IBOUTLETS
+    
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var spinner: UIActivityIndicatorView!
+    
+    //MARK: - VARIABLES
+    
+    var photoDescription: String?
+    
     
     
     override func awakeFromNib() {
@@ -26,9 +33,6 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         update(with: nil)
     }
     
-    
-    
-    
     func update(with image: UIImage?) {
         
         if let imageToDisplay = image {
@@ -41,6 +45,35 @@ class PhotoCollectionViewCell: UICollectionViewCell {
             spinner.startAnimating()
             imageView.image = nil
             
+        }
+    }
+    
+    
+    //MARK: - ACCESSIBILITY 
+    
+    override var isAccessibilityElement: Bool {
+        get {
+            return true 
+        }
+        set {
+            super.isAccessibilityElement = newValue
+        }
+    }
+    
+    override var accessibilityLabel: String? {
+        get {
+            return photoDescription
+        } set {
+            //Ignore attempts to set
+        }
+    }
+    
+    override var accessibilityTraits: UIAccessibilityTraits {
+        get {
+            return super.accessibilityTraits | UIAccessibilityTraitImage
+        }
+        set {
+            //Ignore attempts to set 
         }
     }
     
